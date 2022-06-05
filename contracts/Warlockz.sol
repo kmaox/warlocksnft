@@ -10,7 +10,6 @@ import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 
 interface ISac {
     function burn(address _from, uint256 _amount) external;
-
     function updateReward(address _from, address _to) external;
 }
 

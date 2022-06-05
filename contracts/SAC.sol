@@ -12,6 +12,7 @@ interface IWarlockz {
 
 contract Sacrifice is ERC20, Ownable {
     IWarlockz public Warlockz;
+    address SACBags;
 
     // generation rate of the genesis nfts
     uint256 constant GEN_RATE = 5 ether; //TODO
@@ -72,6 +73,14 @@ contract Sacrifice is ERC20, Ownable {
         _burn(user, amount);
     }
 
+    function transferFromSacBags(address to, uint256 amount) external {
+        require(
+            msg.sender == SACBags, 
+            "Only the SACBags address can call this function"
+        );
+        _transfer(SACBags, to, amount);
+    }
+
     // returns the total claimable for owner
     function getTotalClaimable(address user) external view returns (uint256) {
         return rewards[user] + getPendingReward(user);
@@ -97,6 +106,10 @@ contract Sacrifice is ERC20, Ownable {
         onlyOwner
     {
         allowedAddresses[_address] = _access;
+    }
+
+    function setSACbags(address _address) public onlyOwner {
+        SACBags = _address;
     }
 
     function toggleReward() public onlyOwner {
