@@ -29,7 +29,7 @@ contract Warlockz is ERC721A, Ownable, ReentrancyGuard {
     string public baseURI = "ipfs"; // TODO
 
     ISac public Sac;
-    uint256 public SPAWN_PRICE = 600 ether; //TODO
+    uint256 public SPAWN_PRICE = 700 ether; 
 
     mapping(address => uint256) public balanceGenesis;
 
